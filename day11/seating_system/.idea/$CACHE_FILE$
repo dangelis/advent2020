@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="GradleLocalSettings">
+    <option name="projectSyncType">
+      <map>
+        <entry key="$USER_HOME$/IdeaProjects/GatewayController" value="PREVIEW" />
+        <entry key="$USER_HOME$/IdeaProjects/Samhat" value="PREVIEW" />
+        <entry key="$USER_HOME$/IdeaProjects/amqtest" value="PREVIEW" />
+        <entry key="$USER_HOME$/IdeaProjects/da-config-svc" value="PREVIEW" />
+        <entry key="$USER_HOME$/IdeaProjects/da-stats" value="PREVIEW" />
+        <entry key="$USER_HOME$/IdeaProjects/data-indexing" value="PREVIEW" />
+        <entry key="$USER_HOME$/IdeaProjects/data-models-platform" value="PREVIEW" />
+        <entry key="$USER_HOME$/IdeaProjects/explorys-common" value="PREVIEW" />
+        <entry key="$USER_HOME$/IdeaProjects/explorys-hbase-parent" value="PREVIEW" />
+        <entry key="$USER_HOME$/IdeaProjects/explorys-patient-model" value="PREVIEW" />
+        <entry key="$USER_HOME$/IdeaProjects/flink-config" value="PREVIEW" />
+        <entry key="$USER_HOME$/IdeaProjects/flink-lake-undertow" value="PREVIEW" />
+        <entry key="$USER_HOME$/IdeaProjects/gateway-batch" value="PREVIEW" />
+        <entry key="$USER_HOME$/IdeaProjects/gateway-batch/spec/harness" value="PREVIEW" />
+        <entry key="$USER_HOME$/IdeaProjects/gateway-data-model" value="PREVIEW" />
+        <entry key="$USER_HOME$/IdeaProjects/gateway-ingest" value="PREVIEW" />
+        <entry key="$USER_HOME$/IdeaProjects/graveyard/SourceDataStaging" value="PREVIEW" />
+        <entry key="$USER_HOME$/IdeaProjects/lake-core" value="PREVIEW" />
+        <entry key="$USER_HOME$/IdeaProjects/lake-pipeline" value="PREVIEW" />
+        <entry key="$USER_HOME$/IdeaProjects/lake-stream" value="PREVIEW" />
+        <entry key="$USER_HOME$/IdeaProjects/organization-level-modules" value="PREVIEW" />
+        <entry key="$USER_HOME$/IdeaProjects/quality-analysis" value="PREVIEW" />
+        <entry key="$USER_HOME$/IdeaProjects/reservoir-load" value="PREVIEW" />
+        <entry key="$USER_HOME$/IdeaProjects/watson-health-gateway-on-prem/flink-config" value="PREVIEW" />
+        <entry key="$USER_HOME$/IdeaProjects/x12-parser" value="PREVIEW" />
+      </map>
+    </option>
+  </component>
+  <component name="NodePackageJsonFileManager">
+    <packageJsonPaths />
+  </component>
+</project>
