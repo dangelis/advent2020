@@ -6,38 +6,47 @@ use std::collections::HashMap;
 
 fn main() {
     let lines = file_lines_as_vec("./input");
+    // let lines = file_lines_as_vec("./example");
 
     let mut curr_mask_str: &str;
     let mut mem: HashMap<usize, u64> = HashMap::new();
 
     // For setting 0s
-    let mut and_masks: Vec<u64> = Vec::new();
+    let mut and_mask: u64 = u64::max_value();
     // For setting 1s
-    let mut or_masks: Vec<u64> = Vec::new();
+    let mut or_mask: u64 = 0;
+
 
     for line in lines {
         let tokens: Vec<&str> = line.split(' ').collect();
 
         match tokens[0] {
             "mask" => {
+                and_mask = u64::max_value();
+                or_mask = 0;
                 curr_mask_str = tokens[2];
                 println!("current mask: {}", curr_mask_str);
 
                 for (i, c) in curr_mask_str.char_indices() {
                     match c {
                         '1' => {
-                            println!("Found {} at index {}", c, i);
+                            //println!("Found {} at index {}", c, i);
                             let mut mask = 1;
                             mask = mask << curr_mask_str.chars().count() - i - 1;
-                            or_masks.push(mask);
+                            println!("  new or mask: {:b}", mask);
+                            or_mask = or_mask | mask;
+                            println!("  total or mask: {:b}", or_mask);
+
                         },
                         '0' => {
-                            println!("Found {} at index {}", c, i);
+                            //println!("Found {} at index {}", c, i);
                             let mut mask = 1;
                             mask = mask <<  curr_mask_str.chars().count() - i - 1;
                             //invert
                             mask = !mask;
-                            and_masks.push(mask);
+                            println!("  new and mask: {:b}", mask);
+                            and_mask = and_mask & mask;
+                            println!("  total and mask: {:b}", and_mask);
                         }
                         _ => {}
                     }
@@ -48,20 +57,15 @@ fn main() {
                 let mem_tokens: Vec<&str> = line.split(' ').collect();
                 let addr = mem_tokens[0].replace("mem[","").replace("]","").parse().unwrap();
                 let mut val = mem_tokens[2].parse().unwrap();
-                println!("addr: {}, val: {}", addr, val);
+                println!("addr: {}, val: {} 0x{:b}", addr, val, val);
 
-                for a in &and_masks {
-                    println!("  applying and mask: {:b}", a);
-                    val = val & a;
-                    println!("value now {:b}", val);
+                println!("  applying and mask: {:b}", and_mask);
+                val = val & and_mask;
+                println!("    value now {:b}", val);
 
-                }
-
-                for o in &or_masks {
-                    println!("  applying or mask: {:b}", o);
-                    val = val | o;
-                    println!("value now {:b}", val);
-                }
+                println!("  applying or mask: {:b}", or_mask);
+                val = val | or_mask;
+                println!("    value now {:b}", val);
 
                 mem.insert(addr, val);
             }
@@ -69,12 +73,13 @@ fn main() {
     }
 
     let mut sum = 0;
-    for (_k, v) in mem {
+    for (k, v) in mem {
         sum = sum + v;
+        println!("at addr {}, value {:b}, sum now {}", k, v, sum);
     }
 
     println!("sum: {}", sum);
-    //26829988517442 to high
+    //8471403462063
 }
 
 
