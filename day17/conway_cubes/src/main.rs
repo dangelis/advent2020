@@ -66,9 +66,11 @@ fn main() {
     let loops = 6;
 
     // Calculate max limits
-    let ylim = (records.len() + 2) * 6;
-    let xlim = (records[0].chars().count() + 2) * 6;
-    let zlim = (1 + 2) * 6;
+    let ylim = records.len() + 2 * loops;
+    let xlim = records[0].chars().count() + 2 * loops;
+    let zlim = 1 + 2 * loops;
+
+    println!("limits at {} loops: x: {}, y: {}, z: {}", loops, xlim, ylim, zlim);
 
 
 
@@ -106,11 +108,41 @@ fn main() {
 
     }
 
-
+    // starting point of data would be loops index in
 
 
     // prep input data in matrix
-    // for l in 0..records.len() {
+    //for l in loops..records.len() {
+
+        let &start_slice :&mut Vec<Vec<Cube>> = &mut pocket[loops];
+        let mut row_idx: usize = loops;
+
+
+         for l in 0..records.len() {
+             let row: Vec<_> = records[l].chars().collect();
+
+             let mut col_idx: usize = loops;
+             for (i, cube) in row.iter().enumerate() {
+                 let &mut start_cube = start_slice[row_idx][col_idx];
+
+                 match cube {
+                     '.'=> { start_cube.loc_type = LocationType::Deactivated; },
+                     '#' => {start_cube.loc_type = LocationType::Activated;},
+                     _ => {},
+                 }
+
+                 col_idx = col_idx + 1;
+             }
+             row_idx = row_idx + 1;
+         }
+
+
+
+
+
+
+
+        // for l in 0..records.len() {
     //
     //     let mut row_vec:Vec<Cube> = Vec::new();
     //     let row: Vec<_> = records[l].chars().collect();
@@ -398,20 +430,24 @@ fn main() {
     // println!("occupied seats: {}", occupied_seats); //2338
 }
 
+// TODO: get the print to work in 3d so I can check my initial loading
+fn fancy_print (pocket: &mut Vec<Vec<Vec<Cube>>>) {
+    for k in 0..pocket.len() {
+        let &mut plane: Vec<Vec<Cube>> = Vec::new();
 
-fn fancy_print (ferry: &mut Vec<Vec<Cube>>) {
-    for i in 0..ferry.len() {
-        let mut row: Vec<String> = Vec::new();
+        for i in 0..plane.len() {
+            let mut row: Vec<String> = Vec::new();
 
-        for j in 0..ferry[i].len() {
-            if ferry[i][j].loc_type == LocationType::Activated {
-                row.push("#".to_string());
-            } else if ferry[i][j].loc_type == LocationType::Deactivated {
-                row.push(".".to_string());
+            for j in 0..pocket[i].len() {
+                if ferry[i][j].loc_type == LocationType::Activated {
+                    row.push("#".to_string());
+                } else if pocket[i][j].loc_type == LocationType::Deactivated {
+                    row.push(".".to_string());
+                }
             }
-        }
 
-        println!("{}",row.join(""));
+            println!("{}", row.join(""));
+        }
     }
 }
 
